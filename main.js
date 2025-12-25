@@ -5,11 +5,7 @@ let activeTheme = 'default';
 let overlayEnabled = true;
 
 function seasonalDefaultTheme(now = new Date()) {
-  const month = now.getMonth();
-  const day = now.getDate();
-  if (month === 11) return 'christmas';
-  if (month === 1 && day <= 20) return 'valentines';
-  return 'default';
+  return 'christmas';
 }
 
 function updateQuery(theme) {
@@ -162,7 +158,42 @@ function init() {
   wireOverlayButtons();
   setupMusic();
   setupThemeButtons();
+  setupHolidayMarquee();
+  initGiftModal();
   window.addEventListener('resize', renderOverlay);
+}
+
+function setupHolidayMarquee() {
+  const track = document.getElementById('holidayTrack');
+  if (!track) return;
+  const items = Array.from(track.children);
+  items.forEach((node) => {
+    const clone = node.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    track.appendChild(clone);
+  });
+}
+
+function initGiftModal() {
+  const modal = document.getElementById('giftModal');
+  if (!modal) return;
+  const closeBtn = modal.querySelector('[data-close-gift]');
+
+  const showModal = () => {
+    modal.classList.add('visible');
+    modal.setAttribute('aria-hidden', 'false');
+  };
+
+  const hideModal = () => {
+    modal.classList.remove('visible');
+    modal.setAttribute('aria-hidden', 'true');
+  };
+
+  setTimeout(showModal, 600);
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', hideModal);
+  }
 }
 
 document.addEventListener('DOMContentLoaded', init);

@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Holiday Details</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="theme-default">
+  <div id="overlayContainer" class="overlay-container" aria-hidden="true"></div>
+  <div id="sideWreath" class="side-wreath" aria-hidden="true"></div>
+
+  <header class="site-header glass">
+    <div class="brand">
+      <div class="brand-mark"></div>
+      <div class="brand-text">
+        <span class="eyebrow">Seasonal share</span>
+        <span class="brand-title">Holiday Details</span>
+      </div>
+    </div>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="details.html" class="active">Details</a>
+      <a href="themes.html">Themes</a>
+      <a href="gift.html">Gift</a>
+    </nav>
+    <div class="header-actions">
+      <div class="theme-pill" id="themeLabel">Default</div>
+      <button class="pill ghost small" data-overlay-toggle>Toggle overlay</button>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="section intro">
+      <div class="banner glass">
+        <div>
+          <p class="eyebrow">Seasonal cheer</p>
+          <h1>Welcome to our rotating holiday look.</h1>
+          <p class="lede">Snow floats in for Christmas, hearts rise when you swap to Valentine's Day, and a calm palette waits in the default look. Pin a favorite style from the Themes page and share the link.</p>
+          <div class="banner-actions">
+            <a class="pill" href="themes.html">Visit Themes</a>
+            <button class="pill ghost" data-overlay-toggle>Overlay: <span id="overlayStatus">On</span></button>
+          </div>
+        </div>
+        <div class="status-grid">
+          <div class="status-card">
+            <p class="label">Theme</p>
+            <p id="currentTheme" class="value">Default</p>
+          </div>
+          <div class="status-card">
+            <p class="label">Overlay</p>
+            <p id="overlayStatusSmall" class="value">On</p>
+          </div>
+          <div class="status-card">
+            <p class="label">Music</p>
+            <p id="musicStatus" class="value">Ready</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section hero-section">
+      <div class="hero-frame glass">
+        <img src="photos/uploaded/DSC03786_Original.png" alt="Holiday portrait" loading="lazy" />
+      </div>
+      <div class="hero-notes">
+        <div class="card glass">
+          <h2>Welcome</h2>
+          <p>Seasonal magic flows through this page: snow appears for Christmas, hearts float up for Valentine's Day, and a serene gradient returns the rest of the year. Want to keep a vibe? Jump to the Themes page to pin or share a style.</p>
+        </div>
+        <div id="album" class="card glass">
+          <div class="card-heading">
+            <div>
+              <p class="eyebrow">Shared album</p>
+              <h3>iCloud photos</h3>
+            </div>
+            <p class="note">Add your embed URL in the inline config to show the album here.</p>
+          </div>
+          <div id="albumEmbed" class="album-embed" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="music" class="section music-section">
+      <div class="card glass music-card">
+        <div>
+          <p class="eyebrow">Playlist</p>
+          <h3>Holiday soundtrack</h3>
+          <p class="note">Press play to hear the featured track. Audio loads but never autoplays.</p>
+        </div>
+        <div class="player">
+          <div class="track-meta">
+            <p id="trackTitle" class="value">the marias — basta ya</p>
+            <p class="label">Now playing</p>
+          </div>
+          <div class="player-controls">
+            <button id="playPause" class="pill">Play</button>
+            <button class="pill ghost" data-overlay-toggle>Toggle overlay</button>
+          </div>
+          <audio id="audio" preload="metadata">
+            <source src="audio/the_marias-basta_ya.mp3" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section about-section">
+      <div class="card glass">
+        <h3>How themes work</h3>
+        <p>The page reads a <code>theme</code> query string and starts in the Christmas look by default. Swap to Valentine’s or the calm default palette and the URL updates so you can share your view.</p>
+      </div>
+      <div class="card glass">
+        <h3>Overlays</h3>
+        <p>Snowflakes drift down for Christmas while hearts rise for Valentine’s. Use the overlay controls in the banner or music card to pause the motion.</p>
+      </div>
+      <div class="card glass">
+        <h3>Shared album</h3>
+        <p>If you set <code>VITE_ICLOUD_EMBED_URL</code> in the inline config, an embedded album fills the shared album card. Without it, a friendly placeholder encourages you to add the link.</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    window.APP_CONFIG = {
+      VITE_ICLOUD_EMBED_URL: ""
+    };
+  </script>
+  <script src="main.js"></script>
+</body>
+</html>
