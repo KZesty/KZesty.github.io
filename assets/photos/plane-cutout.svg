@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" aria-labelledby="title desc">
+  <title id="title">Paper plane cutout</title>
+  <desc id="desc">A simple paper plane silhouette in midnight blue.</desc>
+  <path
+    fill="#0d47a1"
+    d="M12 94 300 22 206 98l-52 60-28-24 38-36 36-34-94 32z"
+  />
+  <path
+    fill="#1976d2"
+    opacity="0.7"
+    d="M206 98 186 80l26-20 88-38z"
+  />
+  <path
+    fill="#64b5f6"
+    opacity="0.9"
+    d="M154 158 126 134l32-12z"
+  />
+</svg>

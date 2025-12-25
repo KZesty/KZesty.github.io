@@ -447,6 +447,15 @@ body.theme-christmas .simple-home {
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
+.pill--accent {
+  background: linear-gradient(135deg, #1a73e8, #4fc3f7);
+  color: #0b172a;
+}
+
+.pill--accent:hover {
+  box-shadow: 0 14px 30px rgba(26, 115, 232, 0.35);
+}
+
 .pill.small {
   padding: 8px 12px;
 }
@@ -697,6 +706,122 @@ body.theme-christmas .side-wreath--left {
 .fine-print {
   margin: 12px 0 18px;
   opacity: 0.85;
+}
+
+.itinerary-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.itinerary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px;
+}
+
+.itinerary-title {
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+.itinerary-card {
+  padding: 22px 24px;
+  border-radius: 18px;
+}
+
+.itinerary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.itinerary-leg {
+  padding: 18px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+}
+
+.leg-title {
+  margin: 0 0 6px;
+}
+
+.leg-meta {
+  margin: 0 0 10px;
+  opacity: 0.85;
+}
+
+.route-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.route-line::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ff7043, #ffa000);
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.06);
+}
+
+.callout {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding-left: 18px;
+}
+
+.itinerary-visuals {
+  padding: 20px;
+  border-radius: 18px;
+}
+
+.visuals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.map-figure {
+  margin: 0;
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: grid;
+  gap: 10px;
+  place-items: center;
+}
+
+.map-figure img,
+.map-figure svg {
+  width: 100%;
+  height: auto;
+  max-height: 220px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-weight: 700;
+}
+
+.badge::before {
+  content: '✈️';
+  font-size: 1rem;
 }
 
 @media (max-width: 900px) {
