@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Choose a theme</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="theme-default">
+  <div id="overlayContainer" class="overlay-container" aria-hidden="true"></div>
+  <div id="sideWreath" class="side-wreath" aria-hidden="true"></div>
+
+  <header class="site-header glass">
+    <div class="brand">
+      <div class="brand-mark"></div>
+      <div class="brand-text">
+        <span class="eyebrow">Seasonal share</span>
+        <span class="brand-title">Choose a theme</span>
+      </div>
+    </div>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="themes.html" class="active">Themes</a>
+      <a href="index.html#album">Gallery</a>
+      <a href="index.html#about">About</a>
+    </nav>
+    <div class="header-actions">
+      <div class="theme-pill" id="themeLabel">Default</div>
+      <button class="pill ghost small" data-overlay-toggle>Toggle overlay</button>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="section intro">
+      <div class="banner glass">
+        <div>
+          <p class="eyebrow">Pick your vibe</p>
+          <h1>Shareable seasonal looks</h1>
+          <p class="lede">Choose a theme to apply instantly and copy the URL to share your preferred holiday style. Themes also change automatically based on the calendar.</p>
+        </div>
+        <div class="status-grid">
+          <div class="status-card">
+            <p class="label">Active</p>
+            <p id="currentTheme" class="value">Default</p>
+          </div>
+          <div class="status-card">
+            <p class="label">Overlay</p>
+            <p id="overlayStatusSmall" class="value">On</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section theme-grid">
+      <div class="card glass theme-card" data-theme="christmas">
+        <div class="swatch christmas"></div>
+        <div>
+          <h3>Christmas</h3>
+          <p class="note">Aurora artwork with deep greens and reds.</p>
+        </div>
+        <button class="pill" data-use-theme="christmas">Use theme</button>
+      </div>
+      <div class="card glass theme-card" data-theme="valentines">
+        <div class="swatch valentines"></div>
+        <div>
+          <h3>Valentine's</h3>
+          <p class="note">Pink gradient with floating hearts.</p>
+        </div>
+        <button class="pill" data-use-theme="valentines">Use theme</button>
+      </div>
+      <div class="card glass theme-card" data-theme="default">
+        <div class="swatch default"></div>
+        <div>
+          <h3>Default</h3>
+          <p class="note">Calm teal and blue gradient with no overlay.</p>
+        </div>
+        <button class="pill" data-use-theme="default">Use theme</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="main.js"></script>
+</body>
+</html>
