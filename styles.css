@@ -67,6 +67,10 @@ body.theme-christmas .page-shell {
   backdrop-filter: blur(10px);
 }
 
+.simple-header {
+  position: relative;
+}
+
 .nav {
   display: flex;
   gap: 12px;
@@ -98,7 +102,7 @@ body.theme-christmas .page-shell {
   width: 38px;
   height: 38px;
   border-radius: 12px;
-  background: linear-gradient(135deg, #64b5f6, #1976d2);
+  background: linear-gradient(135deg, #b71c1c, #2e7d32);
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
 }
 
@@ -130,6 +134,68 @@ body.theme-christmas .page-shell {
 
 .section {
   margin-top: 26px;
+}
+
+.home-splash {
+  padding-top: 32px;
+}
+
+.splash {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.splash-title {
+  font-size: clamp(2.6rem, 5vw, 4rem);
+  margin: 0;
+  text-align: center;
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.splash-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+
+.portrait-frame img {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  height: 100%;
+  object-fit: cover;
+}
+
+.holiday-gallery {
+  overflow: hidden;
+  border-radius: var(--radius);
+  padding: 8px;
+}
+
+.gallery-track {
+  display: flex;
+  gap: 12px;
+  width: max-content;
+  animation: marquee-scroll 22s linear infinite;
+}
+
+.gallery-track img {
+  width: 240px;
+  height: 260px;
+  object-fit: cover;
+  border-radius: var(--card-radius);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .banner {
@@ -304,6 +370,29 @@ body.theme-christmas .page-shell {
   align-content: start;
 }
 
+.gift-page {
+  display: grid;
+  min-height: calc(100vh - 160px);
+  place-items: center;
+}
+
+.gift-card {
+  max-width: 720px;
+  text-align: center;
+  padding: 28px;
+}
+
+.gift-card h1 {
+  margin: 0 0 12px;
+  font-size: clamp(2rem, 4vw, 2.6rem);
+}
+
+.gift-note {
+  margin: 0;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+}
+
 .swatch {
   height: 120px;
   border-radius: 12px;
@@ -350,6 +439,40 @@ body.theme-christmas .page-shell {
 
 .pill.small {
   padding: 8px 12px;
+}
+
+.gift-modal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+.gift-modal.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.gift-modal__content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  padding: 22px;
+  border-radius: var(--radius);
+}
+
+.gift-modal__link {
+  color: #fff;
+  font-size: 1.4rem;
+  text-decoration: none;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .eyebrow {
@@ -453,15 +576,17 @@ body.theme-christmas .page-shell {
   right: 0;
   width: 140px;
   height: 100vh;
-  background: repeating-linear-gradient(
-      to bottom,
-      rgba(69, 160, 91, 0.9) 0,
-      rgba(69, 160, 91, 0.9) 40px,
-      rgba(200, 73, 73, 0.9) 40px,
-      rgba(200, 73, 73, 0.9) 80px
-    ),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.15), transparent 12%),
-    linear-gradient(to top, rgba(0, 0, 0, 0.15), transparent 12%);
+  background:
+    radial-gradient(circle at 24% 16%, #d93a3a 8px, transparent 12px),
+    radial-gradient(circle at 68% 32%, #d93a3a 8px, transparent 12px),
+    radial-gradient(circle at 42% 68%, #d93a3a 7px, transparent 12px),
+    radial-gradient(circle at 74% 78%, #d93a3a 7px, transparent 12px),
+    conic-gradient(from 0deg at 30% 30%, rgba(26, 102, 47, 0.95) 0 60deg, rgba(19, 73, 34, 0.95) 60deg 120deg, transparent 120deg 360deg),
+    conic-gradient(from 30deg at 70% 50%, rgba(18, 73, 31, 0.95) 0 70deg, rgba(33, 120, 62, 0.95) 70deg 140deg, transparent 140deg 360deg),
+    linear-gradient(135deg, rgba(22, 61, 34, 0.92), rgba(15, 42, 26, 0.92));
+  background-size: 140px 220px, 160px 210px, 150px 190px, 170px 200px, 180px 220px, 200px 240px, 100% 100%;
+  background-position: 0 0, 10px 40px, 20px 120px, -14px 180px, 0 0, 0 0, 0 0;
+  animation: holly-scroll 18s linear infinite;
   filter: drop-shadow(-6px 0 18px rgba(0, 0, 0, 0.35));
   opacity: 0;
   pointer-events: none;
@@ -475,7 +600,7 @@ body.theme-christmas .page-shell {
   position: absolute;
   inset: 0;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), transparent 18%),
-    linear-gradient(to top, rgba(0, 0, 0, 0.2), transparent 18%);
+    linear-gradient(to top, rgba(255, 255, 255, 0.08), transparent 22%);
   pointer-events: none;
 }
 
@@ -485,6 +610,15 @@ body.theme-christmas .side-wreath {
 
 .side-wreath.visible {
   opacity: 1;
+}
+
+@keyframes holly-scroll {
+  0% {
+    background-position: 0 0, 10px 40px, 20px 120px, -14px 180px, 0 0, 0 0, 0 0;
+  }
+  100% {
+    background-position: 0 -180px, 10px -140px, 20px -60px, -14px -20px, 0 -160px, 0 -120px, 0 0;
+  }
 }
 
 .glass {

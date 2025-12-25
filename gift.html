@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Holiday Gift</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="theme-christmas">
+  <div id="overlayContainer" class="overlay-container" aria-hidden="true"></div>
+  <div id="sideWreath" class="side-wreath visible" aria-hidden="true"></div>
+
+  <header class="site-header glass simple-header">
+    <div class="brand">
+      <div class="brand-mark"></div>
+      <div class="brand-text">
+        <span class="eyebrow">Holiday surprise</span>
+        <span class="brand-title">Your Gift</span>
+      </div>
+    </div>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="details.html">Details</a>
+      <a href="themes.html">Themes</a>
+      <a href="gift.html" class="active">Gift</a>
+    </nav>
+  </header>
+
+  <main class="page-shell gift-page">
+    <div class="gift-card glass">
+      <h1>YOU HAVE WON AN ALL INCLUSIVE ROUND TRIP TO ASIA</h1>
+      <p class="gift-note">redeem with 10 kisses</p>
+    </div>
+  </main>
+
+  <script>
+    window.APP_CONFIG = {
+      VITE_ICLOUD_EMBED_URL: ""
+    };
+  </script>
+  <script src="main.js"></script>
+</body>
+</html>
