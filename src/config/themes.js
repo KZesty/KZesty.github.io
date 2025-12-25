@@ -15,7 +15,7 @@ export const THEMES = {
   },
   valentines: {
     key: 'valentines',
-    name: 'Valentine\'s',
+    name: "Valentine's",
     background: 'linear-gradient(135deg, #ff758c, #ff7eb3)',
     accent: '#ffccd5',
     overlay: 'hearts'
