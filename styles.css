@@ -549,7 +549,6 @@ body.theme-christmas .simple-home {
 .side-wreath {
   position: fixed;
   top: 0;
-  right: 0;
   width: 140px;
   height: 100vh;
   background:
@@ -565,13 +564,10 @@ body.theme-christmas .simple-home {
       var(--holly-green-light) 72px
     );
   mask-image: radial-gradient(circle at 0 50%, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.8) 40px, rgba(0, 0, 0, 1) 70px);
-  filter: drop-shadow(-6px 0 18px rgba(0, 0, 0, 0.35));
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease, transform 0.3s ease;
-  z-index: 3;
-  border-left: 6px solid rgba(0, 0, 0, 0.22);
-  transform: translateX(10px);
+  z-index: 0;
 }
 
 .side-wreath::after,
@@ -584,9 +580,31 @@ body.theme-christmas .simple-home {
   pointer-events: none;
 }
 
+.side-wreath--right {
+  right: 0;
+  border-left: 6px solid rgba(0, 0, 0, 0.22);
+  filter: drop-shadow(-6px 0 18px rgba(0, 0, 0, 0.35));
+  transform: translateX(10px);
+}
+
+.side-wreath--left {
+  left: 0;
+  border-right: 6px solid rgba(0, 0, 0, 0.22);
+  filter: drop-shadow(6px 0 18px rgba(0, 0, 0, 0.35));
+  mask-image: radial-gradient(circle at 100% 50%, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.8) 40px, rgba(0, 0, 0, 1) 70px);
+  transform: translateX(-10px) scaleX(-1);
+}
+
 body.theme-christmas .side-wreath {
   opacity: 1;
+}
+
+body.theme-christmas .side-wreath--right {
   transform: translateX(0);
+}
+
+body.theme-christmas .side-wreath--left {
+  transform: translateX(0) scaleX(-1);
 }
 
 .side-wreath.visible {
@@ -602,23 +620,55 @@ body.theme-christmas .side-wreath {
 
 .gift-modal {
   position: fixed;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  background: rgba(0, 0, 0, 0.55);
-  z-index: 10;
+  inset: auto 16px 18px 16px;
+  display: flex;
+  justify-content: center;
+  background: none;
+  z-index: 6;
+  pointer-events: none;
 }
 
 .gift-modal__content {
-  padding: 24px;
-  border-radius: var(--radius);
+  padding: 18px 20px 20px;
+  border-radius: 20px;
   text-align: center;
   max-width: 360px;
+  color: #3a130b;
+  background: linear-gradient(130deg, #ffe867, #ffc107 40%, #ff7043 75%, #d32f2f);
+  box-shadow: 0 18px 32px rgba(0, 0, 0, 0.28);
+  border: 3px solid #ff1744;
+  pointer-events: auto;
+}
+
+.gift-modal__content--flash {
+  position: relative;
+  overflow: hidden;
+  animation: gift-outline-flash 1s ease-in-out infinite;
+}
+
+.gift-modal__content--flash::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.45), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.35), transparent 32%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+@keyframes gift-outline-flash {
+  0% {
+    box-shadow: 0 18px 32px rgba(0, 0, 0, 0.28), 0 0 0 3px #c62828, 0 0 18px 6px rgba(255, 23, 68, 0.35);
+  }
+  100% {
+    box-shadow: 0 18px 32px rgba(0, 0, 0, 0.28), 0 0 0 5px #ff1744, 0 0 24px 12px rgba(255, 23, 68, 0.6);
+  }
 }
 
 .gift-modal__content h2 {
   margin-top: 0;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .gift-page {

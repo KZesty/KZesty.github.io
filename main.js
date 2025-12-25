@@ -1,6 +1,6 @@
 const themes = ['default', 'christmas', 'valentines'];
 const overlayContainer = document.getElementById('overlayContainer');
-const sideWreath = document.getElementById('sideWreath');
+const sideWreaths = document.querySelectorAll('.side-wreath');
 let activeTheme = 'default';
 let overlayEnabled = true;
 
@@ -25,7 +25,9 @@ function setTheme(themeName) {
   const currentTheme = document.getElementById('currentTheme');
   if (label) label.textContent = titleCase(themeName);
   if (currentTheme) currentTheme.textContent = titleCase(themeName);
-  if (sideWreath) sideWreath.classList.toggle('visible', themeName === 'christmas');
+  if (sideWreaths.length) {
+    sideWreaths.forEach((wreath) => wreath.classList.toggle('visible', themeName === 'christmas'));
+  }
   renderOverlay();
   syncOverlayStatus();
   updateQuery(themeName);
