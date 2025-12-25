@@ -1,49 +1,25 @@
-# Seasonal Gallery (React + Vite)
+# Seasonal Microsite (static)
 
-A GitHub Pages–ready single-page app with seasonal theming, animated overlays, an HTML5 music player, and a responsive photo gallery.
+A GitHub Pages–ready, build-free seasonal microsite with:
 
-## Quick start
+- Date- and query-based themes (default, Christmas, Valentines)
+- Canvas snow and hearts overlays with a toggle
+- LocalStorage-backed music player
+- Responsive, lazy-loaded gallery backed by `gallery.js`
 
-```bash
-npm install
-npm run dev
-```
+## Usage
 
-Open the printed local URL in your browser. The app uses `HashRouter` so refreshes will not 404 on GitHub Pages.
+1. Clone the repo.
+2. Open `index.html` directly in your browser or serve the folder on GitHub Pages. No npm or build step required.
 
-### If you see `ENOENT: no such file or directory, open '.../package.json'`
+## Customizing
 
-This usually happens when running npm commands from a directory that does not contain the project’s `package.json`. Fix it by
-changing into the repository root first:
+- **Themes**: Adjust colors in `app.js` under the `themes` object. Force a theme with `?theme=christmas`, `?theme=valentines`, or `?theme=default`.
+- **Gallery**: Edit `gallery.js` to add or reorder images. Drop your files in `assets/photos/`.
+- **Music**: Replace placeholder MP3s in `assets/audio/` and update the select options in `index.html` if you add more tracks.
+- **Overlays**: Toggle snow/hearts per theme in `app.js` via the `overlay` property.
 
-```bash
-cd /path/to/KZesty.github.io
-npm install
-npm run dev
-```
+## Notes
 
-If you renamed or moved the project folder, adjust the path accordingly before running npm.
-
-## Building
-
-```bash
-npm run build
-```
-
-Static files output to `dist/`. Deploy that folder to GitHub Pages.
-
-### GitHub Pages base path
-
-Vite needs the `base` option to match your project site name. Update `repoName` in `vite.config.js` (currently `KZesty.github.io`) if you rename the repository. The base should be `/<repo-name>/`.
-
-## Adding assets
-
-- Place audio files in `public/audio/`. Update `src/components/MusicPlayer.jsx` to add options if you include multiple tracks.
-- Place photos in `public/photos/`. Add entries in `src/components/PhotoGallery.jsx` (or load dynamically) to control ordering and captions.
-
-## Features
-- Seasonal theming (default, Christmas, Valentine’s) with date-based auto-selection and `?theme=` override.
-- Toggleable snow or heart overlays per theme.
-- HTML5 audio player with remembered play/pause state (no forced autoplay).
-- Responsive, lazy-loaded photo grid designed to scale to hundreds of images.
-- Persistent header navigation across Home, Gallery, and About pages via `HashRouter`.
+- Overlay and music preferences persist locally through `localStorage`.
+- The site is responsive and uses only HTML, CSS, and vanilla JavaScript.
