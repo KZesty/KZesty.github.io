@@ -3,126 +3,52 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Holiday Landing</title>
+  <title>Merry Christmas Baby</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body class="theme-default">
+<body class="theme-christmas">
   <div id="overlayContainer" class="overlay-container" aria-hidden="true"></div>
   <div id="sideWreath" class="side-wreath" aria-hidden="true"></div>
 
-  <header class="site-header glass">
+  <header class="site-header glass minimal-header">
     <div class="brand">
       <div class="brand-mark"></div>
       <div class="brand-text">
-        <span class="eyebrow">Seasonal share</span>
         <span class="brand-title">Holiday Landing</span>
       </div>
     </div>
     <nav class="nav">
-      <a href="index.html#home" class="active">Home</a>
-      <a href="themes.html">Themes</a>
-      <a href="index.html#album">Gallery</a>
-      <a href="index.html#about">About</a>
+      <a href="index.html" class="active">Home</a>
+      <a href="details.html">Details</a>
     </nav>
-    <div class="header-actions">
-      <div class="theme-pill" id="themeLabel">Default</div>
-      <button class="pill ghost small" data-overlay-toggle>Toggle overlay</button>
-    </div>
   </header>
 
-  <main class="page-shell">
-    <section id="home" class="section intro">
-      <div class="banner glass">
-        <div>
-          <p class="eyebrow">Seasonal cheer</p>
-          <h1>Welcome to our rotating holiday look.</h1>
-          <p class="lede">Snow floats in during December, hearts rise near Valentine's Day, and a calm palette returns for the rest of the year. Pin a favorite look from the Themes page and share the link.</p>
-          <div class="banner-actions">
-            <a class="pill" href="themes.html">Visit Themes</a>
-            <button class="pill ghost" data-overlay-toggle>Overlay: <span id="overlayStatus">On</span></button>
-          </div>
-        </div>
-        <div class="status-grid">
-          <div class="status-card">
-            <p class="label">Theme</p>
-            <p id="currentTheme" class="value">Default</p>
-          </div>
-          <div class="status-card">
-            <p class="label">Overlay</p>
-            <p id="overlayStatusSmall" class="value">On</p>
-          </div>
-          <div class="status-card">
-            <p class="label">Music</p>
-            <p id="musicStatus" class="value">Ready</p>
-          </div>
-        </div>
+  <main class="page-shell simple-home">
+    <section class="hero-simple">
+      <div class="splash-title">
+        <h1 class="mega-title">Merry Christmas Baby!</h1>
       </div>
-    </section>
-
-    <section class="section hero-section">
-      <div class="hero-frame glass">
+      <div class="portrait-frame">
         <img src="photos/uploaded/DSC03786_Original.png" alt="Holiday portrait" loading="lazy" />
       </div>
-      <div class="hero-notes">
-        <div class="card glass">
-          <h2>Welcome</h2>
-          <p>Seasonal magic flows through this page: snow appears for Christmas, hearts float up for Valentine's Day, and a serene gradient returns the rest of the year. Want to keep a vibe? Jump to the Themes page to pin or share a style.</p>
-        </div>
-        <div id="album" class="card glass">
-          <div class="card-heading">
-            <div>
-              <p class="eyebrow">Shared album</p>
-              <h3>iCloud photos</h3>
-            </div>
-            <p class="note">Add your embed URL in the inline config to show the album here.</p>
-          </div>
-          <div id="albumEmbed" class="album-embed" aria-live="polite"></div>
-        </div>
-      </div>
     </section>
 
-    <section id="music" class="section music-section">
-      <div class="card glass music-card">
-        <div>
-          <p class="eyebrow">Playlist</p>
-          <h3>Holiday soundtrack</h3>
-          <p class="note">Press play to hear the featured track. Audio loads but never autoplays.</p>
-        </div>
-        <div class="player">
-          <div class="track-meta">
-            <p id="trackTitle" class="value">the marias — basta ya</p>
-            <p class="label">Now playing</p>
-          </div>
-          <div class="player-controls">
-            <button id="playPause" class="pill">Play</button>
-            <button class="pill ghost" data-overlay-toggle>Toggle overlay</button>
-          </div>
-          <audio id="audio" preload="metadata">
-            <source src="audio/the_marias-basta_ya.mp3" type="audio/mpeg" />
-            Your browser does not support the audio element.
-          </audio>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="section about-section">
-      <div class="card glass">
-        <h3>How themes work</h3>
-        <p>The page reads a <code>theme</code> query string and falls back to seasonal defaults: Christmas in December, Valentine’s through February 20, otherwise the calm default palette. Switching themes updates the URL so you can share the view.</p>
-      </div>
-      <div class="card glass">
-        <h3>Overlays</h3>
-        <p>Snowflakes drift down for Christmas while hearts rise for Valentine’s. Use the overlay controls in the banner or music card to pause the motion.</p>
-      </div>
-      <div class="card glass">
-        <h3>Shared album</h3>
-        <p>If you set <code>VITE_ICLOUD_EMBED_URL</code> in the inline config, an embedded album fills the shared album card. Without it, a friendly placeholder encourages you to add the link.</p>
+    <section class="slideshow" aria-label="Holiday gallery">
+      <div class="marquee" id="holidayMarquee">
+        <div class="marquee-track" id="marqueeTrack"></div>
       </div>
     </section>
   </main>
+
+  <div class="gift-modal" id="giftModal" role="dialog" aria-modal="true" aria-labelledby="giftModalTitle" hidden>
+    <div class="gift-modal__content glass">
+      <h2 id="giftModalTitle">click now for you gift!!</h2>
+      <a class="pill" href="gift.html">Open your gift</a>
+    </div>
+  </div>
 
   <script>
     window.APP_CONFIG = {
