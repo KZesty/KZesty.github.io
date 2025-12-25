@@ -1,0 +1,18 @@
+<svg width="1200" height="1600" viewBox="0 0 1200 1600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="auroraGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#113341" stop-opacity="0.9" />
+      <stop offset="45%" stop-color="#1a4b5d" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#0b1c23" stop-opacity="0.9" />
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="20%" r="60%">
+      <stop offset="0%" stop-color="#58f8c0" stop-opacity="0.55" />
+      <stop offset="100%" stop-color="#0b1c23" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="1600" fill="url(#auroraGradient)" />
+  <ellipse cx="300" cy="220" rx="360" ry="240" fill="url(#glow)" />
+  <ellipse cx="900" cy="520" rx="420" ry="260" fill="url(#glow)" opacity="0.7" />
+  <path d="M0 900 C200 820 340 840 560 920 C780 1000 940 980 1200 880 L1200 1600 L0 1600 Z" fill="#0b1c23" opacity="0.9" />
+  <path d="M0 1100 C280 1020 500 1040 780 1140 C1040 1230 1160 1210 1200 1180 L1200 1600 L0 1600 Z" fill="#113341" opacity="0.4" />
+</svg>
