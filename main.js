@@ -5,11 +5,7 @@ let activeTheme = 'default';
 let overlayEnabled = true;
 
 function seasonalDefaultTheme(now = new Date()) {
-  const month = now.getMonth();
-  const day = now.getDate();
-  if (month === 11) return 'christmas';
-  if (month === 1 && day <= 20) return 'valentines';
-  return 'default';
+  return 'christmas';
 }
 
 function updateQuery(theme) {
@@ -163,6 +159,36 @@ function init() {
   setupMusic();
   setupThemeButtons();
   window.addEventListener('resize', renderOverlay);
+
+  setupMarquee();
+  showGiftModal();
 }
 
 document.addEventListener('DOMContentLoaded', init);
+
+function setupMarquee() {
+  const track = document.getElementById('marqueeTrack');
+  if (!track) return;
+
+  const images = [
+    'photos/uploaded/HolidayGallery/IMG_4019.png',
+    'photos/uploaded/HolidayGallery/IMG_4020.png',
+    'photos/uploaded/HolidayGallery/IMG_4021.png',
+    'photos/uploaded/HolidayGallery/IMG_5184.png'
+  ];
+
+  const slides = [...images, ...images];
+  slides.forEach((src, index) => {
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = `Holiday gallery photo ${index + 1}`;
+    img.loading = 'lazy';
+    track.appendChild(img);
+  });
+}
+
+function showGiftModal() {
+  const modal = document.getElementById('giftModal');
+  if (!modal) return;
+  modal.hidden = false;
+}
