@@ -1,4 +1,7 @@
 (function () {
+  /**
+   * Cached references used across theme and overlay helpers.
+   */
   const root = document.documentElement;
   const canvas = document.getElementById('overlayCanvas');
   const ctx = canvas.getContext('2d');
@@ -35,6 +38,9 @@
     },
   };
 
+  /**
+   * Extract a forced theme name from the URL query string when present.
+   */
   function readQueryTheme() {
     const params = new URLSearchParams(window.location.search);
     const forced = params.get('theme');
@@ -44,6 +50,9 @@
     return null;
   }
 
+  /**
+   * Choose a seasonal default theme based on the current calendar date.
+   */
   function pickDateTheme() {
     const now = new Date();
     const month = now.getMonth() + 1;
@@ -54,6 +63,9 @@
     return 'default';
   }
 
+  /**
+   * Retrieve a previously stored theme preference from localStorage.
+   */
   function getStoredThemeSelection() {
     const stored = localStorage.getItem(THEME_KEY);
     if (stored === 'auto') return 'auto';
@@ -61,6 +73,9 @@
     return null;
   }
 
+  /**
+   * Resolve the theme that should be applied on page load.
+   */
   function getInitialTheme() {
     const forced = readQueryTheme();
     if (forced) {
@@ -73,6 +88,9 @@
     return pickDateTheme();
   }
 
+  /**
+   * Apply a theme's colors and overlay choice to the document.
+   */
   function applyTheme(themeKey) {
     const theme = themes[themeKey] || themes.default;
     root.style.setProperty('--bg', theme.bg);
@@ -85,19 +103,31 @@
     document.getElementById('currentTheme').textContent = themeKey;
   }
 
+  /**
+   * Persist the theme selection so it can be restored later.
+   */
   function storeTheme(themeKey) {
     localStorage.setItem(THEME_KEY, themeKey);
   }
 
+  /**
+   * Size the overlay canvas to fill the viewport.
+   */
   function setCanvasSize() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   }
 
+  /**
+   * Generate a random floating point value between two bounds.
+   */
   function randomBetween(min, max) {
     return Math.random() * (max - min) + min;
   }
 
+  /**
+   * Create particle definitions for either snow or heart overlays.
+   */
   function initParticles(mode) {
     const count = Math.floor((window.innerWidth * window.innerHeight) / 12000);
     particles = Array.from({ length: count }, () => {
@@ -121,6 +151,9 @@
     });
   }
 
+  /**
+   * Render heart particles with a gentle wobble animation.
+   */
   function drawHearts() {
     ctx.fillStyle = 'rgba(230, 57, 125, 0.8)';
     particles.forEach((p) => {
@@ -142,6 +175,9 @@
     });
   }
 
+  /**
+   * Render snow particles with vertical drift and a subtle sway.
+   */
   function drawSnow() {
     ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
     particles.forEach((p) => {
@@ -160,6 +196,9 @@
     });
   }
 
+  /**
+   * Paint the overlay frame for the current overlay type.
+   */
   function renderOverlay() {
     if (!overlayEnabled || activeOverlay === 'none') return;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -171,6 +210,9 @@
     animationId = requestAnimationFrame(renderOverlay);
   }
 
+  /**
+   * Reset particles and begin the overlay animation loop.
+   */
   function startOverlay() {
     cancelAnimationFrame(animationId);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -179,11 +221,17 @@
     renderOverlay();
   }
 
+  /**
+   * Resize the canvas and rebuild the overlay when the viewport changes.
+   */
   function handleResize() {
     setCanvasSize();
     startOverlay();
   }
 
+  /**
+   * Sync the overlay toggle UI with the current preference and active overlay.
+   */
   function updateOverlayToggleState() {
     const overlayToggle = document.getElementById('overlayToggle');
     const statusEl = document.getElementById('overlayStatus');
@@ -191,10 +239,16 @@
     statusEl.textContent = overlayEnabled && activeOverlay !== 'none' ? 'On' : 'Off';
   }
 
+  /**
+   * Save the overlay enabled flag to localStorage.
+   */
   function persistOverlay(enabled) {
     localStorage.setItem(OVERLAY_KEY, JSON.stringify(enabled));
   }
 
+  /**
+   * Build the gallery grid from the global galleryItems definition.
+   */
   function initGallery() {
     const grid = document.getElementById('galleryGrid');
     if (!Array.isArray(window.galleryItems)) return;
@@ -214,10 +268,16 @@
     });
   }
 
+  /**
+   * Smoothly scroll to the given selector if it exists.
+   */
   function smoothScroll(target) {
     document.querySelector(target)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
+  /**
+   * Wire up header and hero navigation links for smooth scrolling.
+   */
   function initNavigation() {
     document.querySelectorAll('header nav a').forEach((link) => {
       link.addEventListener('click', (e) => {
@@ -229,6 +289,9 @@
     document.getElementById('scrollAbout').addEventListener('click', () => smoothScroll('#about'));
   }
 
+  /**
+   * Configure the theme select dropdown and apply the initial theme.
+   */
   function initThemeSwitcher(initialTheme) {
     const themeSelect = document.getElementById('themeSelect');
     const forced = readQueryTheme();
@@ -246,6 +309,9 @@
     });
   }
 
+  /**
+   * Safely load persisted music preferences.
+   */
   function loadMusicPrefs() {
     try {
       return JSON.parse(localStorage.getItem(MUSIC_PREFS_KEY)) || {};
@@ -254,10 +320,16 @@
     }
   }
 
+  /**
+   * Persist music preferences including track, volume, and autoplay intent.
+   */
   function saveMusicPrefs(prefs) {
     localStorage.setItem(MUSIC_PREFS_KEY, JSON.stringify(prefs));
   }
 
+  /**
+   * Initialize the audio player controls and preference syncing.
+   */
   function initMusic() {
     const audio = document.getElementById('audio');
     const playPause = document.getElementById('playPause');
@@ -280,10 +352,16 @@
     let userWantedPlay = prefs.shouldPlay || false;
     musicStatus.textContent = userWantedPlay ? 'Will play when you press Play' : 'Idle';
 
+    /**
+     * Update the now playing label with a descriptive state.
+     */
     function updateNowPlaying(state) {
       nowPlaying.textContent = `${state} – ${trackSelect.options[trackSelect.selectedIndex].text}`;
     }
 
+    /**
+     * Toggle play/pause and persist the current playback intent.
+     */
     function togglePlayback() {
       if (audio.paused) {
         audio.play().catch(() => {
@@ -336,6 +414,9 @@
     });
   }
 
+  /**
+   * Attach handlers for the overlay enable/disable toggle.
+   */
   function initOverlayControls(initialOverlayEnabled) {
     overlayEnabled = initialOverlayEnabled;
     updateOverlayToggleState();
@@ -348,6 +429,9 @@
     });
   }
 
+  /**
+   * Load the persisted overlay enabled flag from localStorage.
+   */
   function loadOverlayPref() {
     const stored = localStorage.getItem(OVERLAY_KEY);
     if (stored === null) return true;
@@ -358,6 +442,9 @@
     }
   }
 
+  /**
+   * Primary entry point that wires up theming, overlays, media, and navigation.
+   */
   function init() {
     setCanvasSize();
     const initialTheme = getInitialTheme();
