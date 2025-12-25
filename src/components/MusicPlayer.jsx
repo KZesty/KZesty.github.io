@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { withBasePath } from '../utils/assets';
 
 const STORAGE_KEY = 'seasonal-music-playing';
 
 const tracks = [
   {
-    src: '/audio/welcome.wav',
-    title: 'Ambient Welcome'
+    src: withBasePath('audio/marias-heavy.mp3'),
+    title: 'The Marías — Heavy'
   }
 ];
 

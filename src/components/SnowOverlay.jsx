@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-const SnowOverlay = ({ accent }) => {
+const SnowOverlay = () => {
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const SnowOverlay = ({ accent }) => {
       flake.style.animationDelay = `${Math.random() * 5}s`;
       flake.style.animationDuration = `${5 + Math.random() * 7}s`;
       flake.style.opacity = `${0.3 + Math.random() * 0.7}`;
-      flake.style.background = accent;
+      flake.style.background = '#ffffff';
       flake.style.transform = `scale(${0.5 + Math.random() * 0.8})`;
       flake.dataset.id = `flake-${i}`;
       container.appendChild(flake);
@@ -24,7 +24,7 @@ const SnowOverlay = ({ accent }) => {
     return () => {
       flakes.forEach((flake) => container.removeChild(flake));
     };
-  }, [accent]);
+  }, []);
 
   return <div className="overlay snow" ref={containerRef} aria-hidden="true" />;
 };

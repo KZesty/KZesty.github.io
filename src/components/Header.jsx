@@ -9,6 +9,9 @@ const Header = ({ accent }) => {
         <NavLink to="/" end className={({ isActive }) => (isActive ? 'active' : '')}>
           Home
         </NavLink>
+        <NavLink to="/themes" className={({ isActive }) => (isActive ? 'active' : '')}>
+          Themes
+        </NavLink>
         <NavLink to="/gallery" className={({ isActive }) => (isActive ? 'active' : '')}>
           Gallery
         </NavLink>
