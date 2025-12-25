@@ -11,6 +11,19 @@ npm run dev
 
 Open the printed local URL in your browser. The app uses `HashRouter` so refreshes will not 404 on GitHub Pages.
 
+### If you see `ENOENT: no such file or directory, open '.../package.json'`
+
+This usually happens when running npm commands from a directory that does not contain the project’s `package.json`. Fix it by
+changing into the repository root first:
+
+```bash
+cd /path/to/KZesty.github.io
+npm install
+npm run dev
+```
+
+If you renamed or moved the project folder, adjust the path accordingly before running npm.
+
 ## Building
 
 ```bash
