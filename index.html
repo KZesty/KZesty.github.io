@@ -1,13 +1,135 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Seasonal Gallery</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Seasonal Microsite</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <canvas id="overlayCanvas" aria-hidden="true"></canvas>
+  <header class="site-header glass">
+    <div class="logo">Seasonal Microsite</div>
+    <nav class="nav">
+      <a href="#home">Home</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#about">About</a>
+    </nav>
+    <div class="controls">
+      <label class="toggle">
+        <input type="checkbox" id="overlayToggle" checked />
+        <span>Overlay</span>
+      </label>
+      <select id="themeSelect" aria-label="Theme selector">
+        <option value="auto">Auto</option>
+        <option value="default">Default</option>
+        <option value="christmas">Christmas</option>
+        <option value="valentines">Valentines</option>
+      </select>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero section">
+      <div class="hero-text glass">
+        <p class="eyebrow">Colorful, cozy, and ready for every season.</p>
+        <h1>Seasonal microsite with themes, music, and a scalable gallery.</h1>
+        <p class="lede">Try the theme switcher, toggle overlays, or press play on the curated tunes.</p>
+        <div class="hero-actions">
+          <button id="scrollGallery" class="pill">View gallery</button>
+          <button id="scrollAbout" class="pill ghost">About this site</button>
+        </div>
+        <dl class="meta">
+          <div>
+            <dt>Current theme</dt>
+            <dd id="currentTheme">Default</dd>
+          </div>
+          <div>
+            <dt>Overlay</dt>
+            <dd id="overlayStatus">Off</dd>
+          </div>
+          <div>
+            <dt>Music intent</dt>
+            <dd id="musicStatus">Waiting</dd>
+          </div>
+        </dl>
+      </div>
+      <div class="card-stack">
+        <div class="card glass">Season-aware theming</div>
+        <div class="card glass">Canvas overlays</div>
+        <div class="card glass">Responsive gallery</div>
+      </div>
+    </section>
+
+    <section id="gallery" class="section">
+      <div class="section-heading">
+        <p class="eyebrow">Photo grid</p>
+        <h2>Scalable, lazy-loaded gallery</h2>
+        <p>Add hundreds of images by editing <code>gallery.js</code>. Entries here use placeholder files under <code>assets/photos</code>.</p>
+      </div>
+      <div id="galleryGrid" class="gallery-grid" aria-live="polite"></div>
+    </section>
+
+    <section id="music" class="section">
+      <div class="section-heading">
+        <p class="eyebrow">Music corner</p>
+        <h2>Playlists that remember your vibe</h2>
+        <p>Volume, chosen track, and play intent persist locally. Audio never autoplays; click play to start.</p>
+      </div>
+      <div class="music-player glass">
+        <div class="track-info">
+          <label for="trackSelect">Track</label>
+          <select id="trackSelect">
+            <option value="assets/audio/sample.mp3">Sample track</option>
+            <option value="assets/audio/welcome.mp3">Welcome track</option>
+          </select>
+          <div id="nowPlaying">Ready</div>
+        </div>
+        <div class="controls-row">
+          <button id="playPause" class="pill">Play</button>
+          <label class="slider">
+            Volume
+            <input type="range" id="volume" min="0" max="1" step="0.01" value="0.6" />
+          </label>
+        </div>
+        <audio id="audio" preload="metadata">
+          <source src="assets/audio/sample.mp3" type="audio/mpeg" />
+          Your browser does not support the audio element. Replace the placeholder files in <code>assets/audio</code> to add music.
+        </audio>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="section-heading">
+        <p class="eyebrow">About</p>
+        <h2>How it works</h2>
+      </div>
+      <div class="about-grid">
+        <article class="glass">
+          <h3>Seasonal themes</h3>
+          <p>CSS variables power gradients and accents. Themes change automatically by date and can be forced with <code>?theme=</code> in the URL.</p>
+        </article>
+        <article class="glass">
+          <h3>Canvas overlays</h3>
+          <p>Snow and heart particles run on a single canvas for performance. Use the overlay toggle in the header to pause animations.</p>
+        </article>
+        <article class="glass">
+          <h3>Gallery growth</h3>
+          <p>Edit <code>gallery.js</code> to add more photos. The masonry-like grid stays responsive, and images lazy-load for efficiency.</p>
+        </article>
+        <article class="glass">
+          <h3>Music memory</h3>
+          <p>LocalStorage remembers track choice, volume, and whether you left playback on, while respecting the browser's autoplay rules.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer glass">
+    <p>Built for GitHub Pages with plain HTML, CSS, and vanilla JavaScript.</p>
+  </footer>
+
+  <script src="gallery.js"></script>
+  <script src="app.js"></script>
+</body>
 </html>
